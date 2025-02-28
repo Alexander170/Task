@@ -1,19 +1,41 @@
-<form action="" class="login-form">
-    <div class="control-panel">
-        <h1 class="h1">Вход</h1>
-        <label class="control-label">
-            Логин
-            <input class="control-input" type="text" placeholder="Введите логин">
-        </label>
-        <label class="control-label">
-            Пароль
-            <input class="control-input" type="text" placeholder="Введите пароль">
-        </label>
-    </div>
-    <button class="btn btn-shadow">
-        Войти
-    </button>
-    <button class="btn btn-shadow">
-        Регистрация
-    </button>
-</form>
+@if(isLoginView) {
+    <form action="" class="login-form">
+        <div class="control-panel">
+            <h1 class="h1">Вход</h1>
+            <label class="control-label">
+                Логин
+                <input name="login" [(ngModel)]="userLogin.login" class="control-input" type="text" placeholder="Введите логин">
+            </label>
+            <label class="control-label">
+                Пароль
+                <input name="password" [(ngModel)]="userLogin.password" class="control-input" type="text" placeholder="Введите пароль">
+            </label>
+        </div>
+        <button class="btn btn-shadow" (click)="onLogin()">
+            Войти
+        </button>
+        <button class="btn btn-shadow">
+            <a (click)="isLoginView = false">Регистрация</a>
+        </button>
+    </form>
+} @else {
+    <form action="" class="login-form">
+        <div class="control-panel">
+            <h1 class="h1">Регистрация</h1>
+            <label class="control-label">
+                Логин
+                <input name="login" [(ngModel)]="userRegisterObj.login" class="control-input" type="text" placeholder="Введите логин">
+            </label>
+            <label class="control-label">
+                Пароль
+                <input name="password" [(ngModel)]="userRegisterObj.password" class="control-input" type="text" placeholder="Введите пароль">
+            </label>
+        </div>
+        <button class="btn btn-shadow" (click)="onRegister()">
+            Зарегестрироваться
+        </button>
+        <button class="btn btn-shadow">
+            <a (click)="isLoginView = true">Страница входа</a>
+        </button>
+    </form>
+}
