@@ -14,8 +14,8 @@
         <button class="btn btn-shadow" (click)="onLogin()">
             Войти
         </button>
-        <button class="btn btn-shadow">
-            <a (click)="isLoginView = false">Регистрация</a>
+        <button class="btn btn-shadow" (click)="isLoginView = false">
+           Регистрация
         </button>
     </form>
 } @else {
@@ -34,8 +34,8 @@
         <button class="btn btn-shadow" (click)="onRegister()">
             Зарегестрироваться
         </button>
-        <button class="btn btn-shadow">
-            <a (click)="isLoginView = true">Страница входа</a>
+        <button class="btn btn-shadow" (click)="isLoginView = true">
+            Страница входа
         </button>
     </form>
 }
