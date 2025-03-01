@@ -1,7 +1,7 @@
-<div mat-dialog-title>
-    <h1>Форма создания пользователя</h1>
+<div class="form_block" mat-dialog-title>
+    <h1 class="label_form">Форма создания пользователя</h1>
 </div>
-<div mat-dialog-content>
+<div mat-dialog-content class="content">
     <div class="row">
         <mat-form-field appearance="outline">
             <mat-label>Имя</mat-label>
@@ -10,9 +10,50 @@
         <mat-form-field appearance="outline">
             <mat-label>Фамилия</mat-label>
             <input matInput type="text" placeholder="Лебедев">
-        </mat-form-field></div>
+        </mat-form-field>
     </div>
-<div mat-dialog-actions>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Эл.почта</mat-label>
+            <input matInput type="email" placeholder="test@gmail.com">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Выбор даты рождения</mat-label>
+            <input matInput [matDatepicker]="picker">
+            <mat-hint>Месяц/День/Год</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+    </div>
+    <div>
+        <mat-radio-group aria-label="Select an option">
+            <mat-label><b>Пол</b></mat-label>
+            <mat-radio-button value="male">Мужской</mat-radio-button>
+            <mat-radio-button value="female">Женский</mat-radio-button>
+          </mat-radio-group>
+    </div>
+    <div class="row">
+        <mat-form-field>
+            <mat-label>Ваше образование</mat-label>
+            <mat-select>
+              @for (education of educations; track education) {
+                <mat-option [value]="education.value">{{education.viewValue}}</mat-option>
+              }
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ваше место работы</mat-label>
+            <input matInput type="text" placeholder="ММЗ">
+        </mat-form-field>
+    </div>
+    <div class="row">
+        <mat-form-field appearance="outline">
+            <mat-label>Ваш опыт работы</mat-label>
+            <input matInput type="text" placeholder="15 лет">
+        </mat-form-field>
+    </div>
+</div>
+<div mat-dialog-actions class="button_group">
     <button mat-raised-button>Отмена</button>
     <button mat-raised-button color="primary">Сохранить</button>
 </div>

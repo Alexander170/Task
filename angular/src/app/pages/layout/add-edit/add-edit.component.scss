@@ -1,4 +1,29 @@
+.content {
+    padding-top: 10px;
+}
+
+.label_form {
+    font-size: 33px;
+    margin: 0;
+    padding: 0;
+}
+
+.form_block {
+    display: flex;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
 .row {
     display: flex;
     gap: 10px;
+
+    mat-form-field {
+        width: 100%;
+    }
+}
+
+.button_group {
+    display:grid;
+    grid-template-columns:1fr 1fr;
 }
