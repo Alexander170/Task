@@ -1,0 +1,44 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "text": "a comment about post 1",
+      "postId": "1"
+    },
+    {
+      "id": "2",
+      "text": "another comment about post 1",
+      "postId": "1"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "employees": [
+    {},
+    {
+      "id": "4e69",
+      "firstName": "dfsafrsf",
+      "lastName": "ewqeqwewq",
+      "email": "ewqeqwewq",
+      "dob": "2000-03-16T21:00:00.000Z",
+      "gender": "male",
+      "education": "Matric",
+      "company": "ewqeqwwe",
+      "experience": null,
+      "package": null
+    }
+  ]
+}
