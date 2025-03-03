@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,6 +8,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DialogRef } from '@angular/cdk/dialog';
+import { EmployeeService } from '../../../services/employee.service';
 
 interface Education {
   value: string;
@@ -30,7 +32,7 @@ export class AddEditComponent {
     {value: 'Высшее', viewValue: 'Высшее'},
   ]
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, private _dialogRef: DialogRef, private _empService: EmployeeService) {
     this.empForm = this._fb.group({
       firstName: '',
       lastName: '',
@@ -45,7 +47,16 @@ export class AddEditComponent {
 
   onFormSubmit() {
     if(this.empForm.valid) {
-      console.log(this.empForm.value)
+      // console.log(this.empForm.value)
+      this._empService.addEmployee(this.empForm.value).subscribe({
+        next: (val: any) => {
+          alert('Пользователь создан');
+          this._dialogRef.close();
+        },
+        error: (err: any) => {
+          console.error(err)
+        }
+      })
     }
   }
 }

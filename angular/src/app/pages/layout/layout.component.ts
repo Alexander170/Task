@@ -6,10 +6,20 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddEditComponent } from './add-edit/add-edit.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterOutlet, MatToolbarModule, MatIconModule, MatButtonModule, MatDialogModule, MatFormFieldModule],
+  imports: 
+  [
+    RouterOutlet, 
+    MatToolbarModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    MatDialogModule, 
+    MatFormFieldModule,
+    HttpClientModule,
+  ],
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss'
 })
