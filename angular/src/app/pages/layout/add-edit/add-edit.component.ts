@@ -3,13 +3,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatSelectModule} from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DialogRef } from '@angular/cdk/dialog';
-import { EmployeeService } from '../../../services/employee.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 interface Education {
   value: string;
@@ -20,20 +21,23 @@ interface Education {
   selector: 'app-add-edit',
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule],
   templateUrl: './add-edit.component.html',
-  styleUrl: './add-edit.component.scss'
+  styleUrls: ['./add-edit.component.scss']
 })
 export class AddEditComponent {
   empForm: FormGroup;
 
-
   educations: Education[] = [
-    {value: 'Среднее школьное', viewValue: 'Среднее школьное'},
-    {value: 'Среднее специальное', viewValue: 'Среднее специальное'},
-    {value: 'Высшее', viewValue: 'Высшее'},
-  ]
+    { value: 'Среднее школьное', viewValue: 'Среднее школьное' },
+    { value: 'Среднее специальное', viewValue: 'Среднее специальное' },
+    { value: 'Высшее', viewValue: 'Высшее' },
+  ];
 
-  constructor(private _fb: FormBuilder, private _dialogRef: DialogRef, private _empService: EmployeeService) {
-    this.empForm = this._fb.group({
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: DialogRef,
+    private http: HttpClient
+  ) {
+    this.empForm = this.fb.group({
       firstName: '',
       lastName: '',
       email: '',
@@ -42,21 +46,24 @@ export class AddEditComponent {
       education: '',
       company: '',
       experience: '',
-    })
+    });
+  }
+
+  addEmployee(data: any): Observable<any> {
+    return this.http.post('http://localhost:3000/employees', data);
   }
 
   onFormSubmit() {
-    if(this.empForm.valid) {
-      // console.log(this.empForm.value)
-      this._empService.addEmployee(this.empForm.value).subscribe({
-        next: (val: any) => {
+    if (this.empForm.valid) {
+      this.addEmployee(this.empForm.value).subscribe({ 
+        next: () => {
           alert('Пользователь создан');
-          this._dialogRef.close();
+          this.dialogRef.close();
         },
         error: (err: any) => {
-          console.error(err)
-        }
-      })
+          console.error(err);
+        },
+      });
     }
   }
 }

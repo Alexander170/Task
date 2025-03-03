@@ -1,14 +1,14 @@
 {
-  "posts":  [
+  "posts": [
     {
-      "id": 1,
+      "id": "1",
       "title": "json-server",
       "author": "typicode"
     }
   ],
   "comments": [
     {
-      "id": 1,
+      "id": "1",
       "body": "some comment",
       "postId": 1
     }
@@ -16,6 +16,17 @@
   "profile": {
     "name": "typicode"
   },
-  "employees": []
-
+  "employees": [
+    {
+      "id": "046c",
+      "firstName": "Александр Александр",
+      "lastName": "Александр Александр",
+      "email": "test@gmail.com",
+      "dob": "2000-03-16T21:00:00.000Z",
+      "gender": "male",
+      "education": "Высшее",
+      "company": "ММЗ",
+      "experience": "1 ГОД"
+    }
+  ]
 }
