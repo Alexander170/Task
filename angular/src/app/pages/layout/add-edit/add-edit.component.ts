@@ -7,6 +7,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 interface Education {
   value: string;
@@ -15,14 +16,36 @@ interface Education {
 
 @Component({
   selector: 'app-add-edit',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatSelectModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MatRadioModule, MatSelectModule, ReactiveFormsModule],
   templateUrl: './add-edit.component.html',
   styleUrl: './add-edit.component.scss'
 })
 export class AddEditComponent {
+  empForm: FormGroup;
+
+
   educations: Education[] = [
     {value: 'Среднее школьное', viewValue: 'Среднее школьное'},
     {value: 'Среднее специальное', viewValue: 'Среднее специальное'},
     {value: 'Высшее', viewValue: 'Высшее'},
   ]
+
+  constructor(private _fb: FormBuilder) {
+    this.empForm = this._fb.group({
+      firstName: '',
+      lastName: '',
+      email: '',
+      dob: '',
+      gender: '',
+      education: '',
+      company: '',
+      experience: '',
+    })
+  }
+
+  onFormSubmit() {
+    if(this.empForm.valid) {
+      console.log(this.empForm.value)
+    }
+  }
 }
